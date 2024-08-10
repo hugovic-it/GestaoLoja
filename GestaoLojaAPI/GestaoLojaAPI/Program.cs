@@ -1,4 +1,7 @@
 
+using GestaoLojaAPI.Context;
+using Microsoft.EntityFrameworkCore;
+
 namespace GestaoLojaAPI
 {
     public class Program
@@ -10,6 +13,9 @@ namespace GestaoLojaAPI
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDbContext<AppDbContext>(options => {  //valido? seguro?
+                options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+            });
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
