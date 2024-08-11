@@ -16,7 +16,7 @@ public class Cliente
     [DataType(DataType.Date)]
     public DateTime Nascimento { get; set; }
     [Range(1, 999999999999)]
-    public int Telefone { get; set; }
+    public long Telefone { get; set; }
     [Range(1, 99999999)]
     public int Cep { get; set; }
     [StringLength(40)]
@@ -27,7 +27,7 @@ public class Cliente
     public string? Rua { get; set; }
     [StringLength(80)]
     public string? NumeroResidencia { get; set; }
-    public List<Pedido> Pedidos { get; set; }
+    public List<Pedido> Pedidos { get; set; } = new List<Pedido>(); //Lista de Pedidos
     public bool EstaDevendo { get; set; }
     [Range(0.00, 99999.99)]
     public decimal ValorDivida { get; set; }
