@@ -24,11 +24,16 @@ public class ClienteController : ControllerBase
     [HttpPost] // POST Clientes
     public async Task<ActionResult<Cliente>> Post()
     {
-        
-        Cliente c = new Cliente() {  }; //INSERCAO MANUAL
-        _context.Clientes.Add(c);
+
+        var clientes = new List<Cliente>
+            {
+                //Inserir Lista Inicial dos Clientes
+            };
+
+        _context.Clientes.AddRange(clientes);
         await _context.SaveChangesAsync();
 
-        return Ok();
+        return Ok($"{clientes.Count} clientes foram adicionados com sucesso.");
     }
+
 }
