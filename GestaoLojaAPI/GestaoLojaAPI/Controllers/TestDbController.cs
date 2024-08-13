@@ -2,6 +2,7 @@
 using GestaoLojaAPI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GestaoLojaAPI.Controllers;
 
@@ -88,5 +89,38 @@ public class TestDbController : ControllerBase
         await _context.SaveChangesAsync();
 
         return Ok($"{produtos.Count} produtos foram adicionados com sucesso.");
+    }
+
+    [HttpPost] // Popular Tabela Pedidos  |  POST Produtos  // 
+    [ActionName("PostPedidos")]
+    public async Task<ActionResult> PostPedidos()
+    {
+
+        var clienteId = 1; // ID de um cliente existente no banco de dados
+        var cliente = await _context.Clientes.FindAsync(clienteId);
+
+        var produtoIds = new List<int> { 1, 2 }; // IDs de produtos existentes no banco de dados
+        var produtos = await _context.Produtos.Where(   p => produtoIds.Contains(p.ProdutoId)   ).ToListAsync();
+
+        var pedido = new Pedido
+        {
+          //PedidoId = AUTOINCREMENT
+           //Cliente = cliente,
+           // Produtos = produtos,
+          //  DataPedido = DateTime.Now
+
+        };
+        cliente.Pedidos.Add(pedido);
+
+
+
+        var pedidos = new List<Pedido>
+        {
+
+        };
+        _context.Pedidos.AddRange(pedidos);
+        await _context.SaveChangesAsync();
+
+        return Ok($"{pedidos.Count} produtos foram adicionados com sucesso.");
     }
 }
