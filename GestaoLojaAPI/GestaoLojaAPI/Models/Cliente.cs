@@ -27,7 +27,7 @@ public class Cliente
     public string? Rua { get; set; }
     [StringLength(80)]
     public string? NumeroResidencia { get; set; }
-    public List<Pedido> Pedidos { get; set; } = new List<Pedido>(); //Lista de Pedidos
+    public List<Pedido> Pedidos { get; set; } = new List<Pedido>(); //Lista de Pedidos //armazena os objetos
     public bool EstaDevendo { get; set; }
     [Range(0.00, 99999.99)]
     public decimal ValorDivida { get; set; }

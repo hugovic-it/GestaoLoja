@@ -91,31 +91,39 @@ public class TestDbController : ControllerBase
         return Ok($"{produtos.Count} produtos foram adicionados com sucesso.");
     }
 
-    [HttpPost] // Popular Tabela Pedidos  |  POST Produtos  // 
+    [HttpGet] // Popular Tabela Pedidos  |  POST Produtos  // 
     [ActionName("PostPedidos")]
     public async Task<ActionResult> PostPedidos()
     {
 
-        var clienteId = 1; // ID de um cliente existente no banco de dados
-        var cliente = await _context.Clientes.FindAsync(clienteId);
+        //var clienteId = 1; // ID de um cliente existente no banco de dados
+       // var cliente = await _context.Clientes.FindAsync(clienteId);
 
         var produtoIds = new List<int> { 1, 2 }; // IDs de produtos existentes no banco de dados
         var produtos = await _context.Produtos.Where(   p => produtoIds.Contains(p.ProdutoId)   ).ToListAsync();
 
-        var pedido = new Pedido
-        {
-          //PedidoId = AUTOINCREMENT
-           //Cliente = cliente,
-           // Produtos = produtos,
-          //  DataPedido = DateTime.Now
-
-        };
-        cliente.Pedidos.Add(pedido);
-
-
 
         var pedidos = new List<Pedido>
         {
+            new Pedido{ClienteId = 1,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 2,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 3,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 4,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 5,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 6,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 7,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 8,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 9,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 10,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 11,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 12,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 13,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 14,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 15,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 16,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 17,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 18,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
+            new Pedido{ClienteId = 19,Produtos = new List<Produto> {  },DataPedido = DateTime.Now,Status = "Novo",Observacao = "Pedido simples"},
 
         };
         _context.Pedidos.AddRange(pedidos);

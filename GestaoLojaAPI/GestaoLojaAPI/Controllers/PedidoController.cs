@@ -17,7 +17,7 @@ public class PedidoController : ControllerBase
     [HttpGet] //Get ALL
     public ActionResult<IEnumerable<Pedido>> Get()
     {
-        var pedidos = _context.Clientes.ToList();
+        var pedidos = _context.Pedidos.ToList();
         return Ok(pedidos);
     }
 }

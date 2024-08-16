@@ -3,6 +3,7 @@ using System;
 using GestaoLojaAPI.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestaoLojaAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240813215830_TestDbController Finalidazdo")]
+    partial class TestDbControllerFinalidazdo
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -87,6 +90,10 @@ namespace GestaoLojaAPI.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ProdutoIds")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Status")
                         .HasMaxLength(20)
                         .HasColumnType("TEXT");
@@ -123,9 +130,6 @@ namespace GestaoLojaAPI.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("PedidoId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Status")
                         .HasMaxLength(10)
                         .HasColumnType("TEXT");
@@ -142,8 +146,6 @@ namespace GestaoLojaAPI.Migrations
 
                     b.HasKey("ProdutoId");
 
-                    b.HasIndex("PedidoId");
-
                     b.ToTable("Produtos");
                 });
 
@@ -156,21 +158,9 @@ namespace GestaoLojaAPI.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GestaoLojaAPI.Models.Produto", b =>
-                {
-                    b.HasOne("GestaoLojaAPI.Models.Pedido", null)
-                        .WithMany("Produtos")
-                        .HasForeignKey("PedidoId");
-                });
-
             modelBuilder.Entity("GestaoLojaAPI.Models.Cliente", b =>
                 {
                     b.Navigation("Pedidos");
-                });
-
-            modelBuilder.Entity("GestaoLojaAPI.Models.Pedido", b =>
-                {
-                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }
